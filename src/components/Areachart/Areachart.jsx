@@ -1,13 +1,15 @@
 import React from "react";
 import {
-  AreaChart,
+  ComposedChart,
   Area,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   Brush,
-  ReferenceLine
+  ReferenceLine,
+  Line,
+  Legend
 } from "recharts";
 
 export default function Areachart(props) {
@@ -51,7 +53,7 @@ export default function Areachart(props) {
   ];
 
   return (
-    <AreaChart
+    <ComposedChart
       width={700}
       height={400}
       data={data}
@@ -64,8 +66,13 @@ export default function Areachart(props) {
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" allowDecimals={true} />
-      <YAxis type="number" domain={[0, 5]} allowDecimals={true} />
+      <YAxis type="number" domain={[0, 4]} allowDecimals={true} />
       <Tooltip />
+      <Legend
+        align="right"
+        verticalAlign="top"
+        wrapperStyle={{ lineHeight: "50px" }}
+      />
       <Area
         type="monotone"
         dataKey="plan"
@@ -81,6 +88,7 @@ export default function Areachart(props) {
         stroke="#525f7f"
         fill="#525f7f"
       />
+      <Line type="monotone" dataKey="actual" stroke="#ff7300" />
       <ReferenceLine y={1} stroke="red" label="Novice" />
       <ReferenceLine y={2} stroke="grey" label="Competent" />
       <ReferenceLine y={3} stroke="yellow" label="Proficient" />
@@ -94,6 +102,6 @@ export default function Areachart(props) {
         stroke="#ffc658"
         fill="#ffc658"
       /> */}
-    </AreaChart>
+    </ComposedChart>
   );
 }

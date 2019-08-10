@@ -23,7 +23,8 @@ const drawerWidth = 270;
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex"
+    display: "flex",
+    backgroundColor: "white"
   },
   logout: {
     flexGrow: 1
@@ -33,7 +34,8 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
-    })
+    }),
+    backgroundColor: "white"
     // borderBottom:'1px solid black',
   },
   appBarShift: {
