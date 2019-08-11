@@ -11,7 +11,6 @@ import TeamworkView from "../../views/TeamWorkView/TeamWorkView.jsx";
 
 export default function Dashboard(props) {
   const listitemnames = ["situationalawareness", "creativity", "teamwork"];
-
   const icons = [
     <SituationalAwarenessIcon />,
     <CreativityIcon />,
@@ -23,6 +22,7 @@ export default function Dashboard(props) {
 
   const pathname = props.location.pathname.split("/");
   const viewname = pathname[1];
+  const username = localStorage.getItem("username");
 
   const view = {
     situationalawareness: <SituationalAwarenessView token={token} />,
@@ -40,7 +40,7 @@ export default function Dashboard(props) {
         icon={icons}
         path={pathname[1]}
         view={view[viewname]}
-        heading={"Client Name"}
+        username={username}
       />
     );
   }

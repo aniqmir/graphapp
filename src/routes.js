@@ -4,6 +4,7 @@ import createBrowserHistory from "history/createBrowserHistory";
 import Login from "./layouts/Login/Login.jsx";
 import Admin from "./layouts/Admin/Admin.jsx";
 import Client from "./layouts/Client/Client.jsx";
+import SignUp from "./layouts/Signup/Signup.jsx";
 
 const customHistory = createBrowserHistory();
 
@@ -26,13 +27,18 @@ function CustomRoutes() {
         </div>
       );
     } else {
-      return <Redirect to="/" />;
+      return (
+        <Redirect
+          to={window.location.pathname === "/signup" ? "/signup" : "/"}
+        />
+      );
     }
   }
 
   return (
     <Router history={customHistory}>
       <Route exact path="/" component={Login} />
+      <Route exact path="/signup" component={SignUp} />
       {routestoRender()}
     </Router>
   );

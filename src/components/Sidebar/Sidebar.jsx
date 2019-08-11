@@ -191,7 +191,7 @@ export default function MiniDrawer(props) {
         open={open}
       >
         <div className={classes.toolbar}>
-          <Typography variant="caption">{props.heading}</Typography>
+          <Typography variant="caption">{props.username}</Typography>
           <IconButton
             onClick={handleDrawerClose}
             classes={{

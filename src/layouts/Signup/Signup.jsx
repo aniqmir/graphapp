@@ -64,13 +64,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Login(props) {
+export default function Signup(props) {
   const classes = useStyles();
   const db = fire.firestore();
   const [values, setValues] = React.useState({
     email: undefined,
-    password: undefined
+    password: undefined,
+    confirmpassword: undefined,
+    username: undefined,
+    type: "client",
+    tests: [{ situationalawareness: 1 }, { creativity: 1 }, { teamwork: 1 }]
   });
+
   const [data, setData] = React.useState({});
   //   const [open, setOpen] = React.useState(false);
   //   const [notification, setNotification] = React.useState("");
@@ -98,43 +103,49 @@ export default function Login(props) {
       });
   }, [db]);
 
-  function loggedInfunc(e) {
+  function createNew() {
+    var id = db.collection("users").doc();
+    db.collection("users")
+      .doc(id.id)
+      .set(values)
+      .then(() => {
+        alert("Success");
+        window.location = "/";
+      })
+      .catch(error => {
+        console.log(error.message, "Create user failed");
+      });
+  }
+  function signUpfunc(e) {
+    console.log(e);
     e.preventDefault();
-    console.log(data);
-    data.map((type, key) => {
-      if (type.email === values.email && type.password === values.password) {
-        if (type.type === "admin") {
-          localStorage.clear();
-          localStorage.setItem("type", "admin");
-          localStorage.setItem("username", type.username);
-          localStorage.setItem("loggedIn", true);
-          props.history.push("/admin");
-          window.location.reload();
+    if (values.password === values.confirmpassword) {
+      data.map((type, key) => {
+        if (type.email === values.email) {
+          alert("email already exists");
           return null;
-        } else if (type.type === "client") {
-          localStorage.clear();
-          localStorage.setItem("type", "client");
-          localStorage.setItem("loggedIn", true);
-          localStorage.setItem("username", type.username);
-          props.history.push(`/situationalawareness`);
-          window.location.reload();
+        } else if (type.username === values.username) {
+          alert("username already exsists");
           return null;
         } else {
+          createNew();
           return null;
         }
-      } else {
-        return null;
-      }
-    });
-  }
-
-  function signUpfunc() {
-    props.history.push("/signup");
+      });
+    } else {
+      alert("passwords do not match");
+      setValues({
+        email: undefined,
+        password: "",
+        confirmpassword: "",
+        usernmae: undefined
+      });
+    }
   }
 
   if (!loggedIn) {
     return (
-      <form onSubmit={e => loggedInfunc(e)}>
+      <form onSubmit={e => signUpfunc(e)}>
         <Grid
           container
           justify="center"
@@ -155,7 +166,8 @@ export default function Login(props) {
                   className={classes.margin}
                   id="outlined-email-input"
                   label="Email"
-                  // type="email"
+                  type="email"
+                  required
                   name="email"
                   autoComplete="email"
                   margin="normal"
@@ -176,7 +188,6 @@ export default function Login(props) {
                       : null
                   }
                   onChange={handleChange("email")}
-                  required
                   fullWidth
                   InputProps={{
                     className: classes.input
@@ -187,6 +198,7 @@ export default function Login(props) {
                 />
               </Grid>
             </Fade>
+
             <Fade in={true} timeout={3000}>
               <Grid item xs={12}>
                 <CssTextField
@@ -224,17 +236,77 @@ export default function Login(props) {
                 />
               </Grid>
             </Fade>
-            <Fade in={true} timeout={4000}>
-              <Grid item xs={6}>
-                <Button
-                  className={classes.button}
+            <Fade in={true} timeout={3000}>
+              <Grid item xs={12}>
+                <CssTextField
+                  className={classes.margin}
+                  id="outlined-cpassword-input"
+                  label="Confirm Password"
+                  type="password"
+                  autoComplete="current-password"
+                  margin="normal"
                   variant="outlined"
-                  size="large"
-                  type="submit"
-                  // onClick={() => loggedInfunc()}
-                >
-                  Login
-                </Button>
+                  onChange={handleChange("confirmpassword")}
+                  required
+                  fullWidth
+                  value={values.confirmpassword || ""}
+                  error={
+                    values.confirmpassword === undefined
+                      ? false
+                      : values.confirmpassword.length === 0
+                      ? true
+                      : false
+                  }
+                  helperText={
+                    values.confirmpassword === undefined
+                      ? false
+                      : values.confirmpassword.length === 0
+                      ? "This cannot be empty"
+                      : false
+                  }
+                  InputProps={{
+                    className: classes.input
+                  }}
+                  InputLabelProps={{
+                    className: classes.input
+                  }}
+                />
+              </Grid>
+            </Fade>
+            <Fade in={true} timeout={3000}>
+              <Grid item xs={12}>
+                <CssTextField
+                  className={classes.margin}
+                  id="outlined-username-input"
+                  label="Username"
+                  autoComplete="username"
+                  margin="normal"
+                  variant="outlined"
+                  onChange={handleChange("username")}
+                  required
+                  fullWidth
+                  value={values.username || ""}
+                  error={
+                    values.username === undefined
+                      ? false
+                      : values.username.length === 0
+                      ? true
+                      : false
+                  }
+                  helperText={
+                    values.username === undefined
+                      ? false
+                      : values.username.length === 0
+                      ? "This cannot be empty"
+                      : false
+                  }
+                  InputProps={{
+                    className: classes.input
+                  }}
+                  InputLabelProps={{
+                    className: classes.input
+                  }}
+                />
               </Grid>
             </Fade>
             <Fade in={true} timeout={5000}>
@@ -243,9 +315,22 @@ export default function Login(props) {
                   className={classes.button}
                   variant="outlined"
                   size="large"
-                  onClick={() => signUpfunc()}
+                  type="submit"
+                  //   onClick={() => signUpfunc()}
                 >
                   Sign Up
+                </Button>
+              </Grid>
+            </Fade>
+            <Fade in={true} timeout={4000}>
+              <Grid item xs={6}>
+                <Button
+                  className={classes.button}
+                  variant="outlined"
+                  size="large"
+                  onClick={() => props.history.push("/")}
+                >
+                  Login
                 </Button>
               </Grid>
             </Fade>
@@ -259,6 +344,6 @@ export default function Login(props) {
       </form>
     );
   } else {
-    return <Redirect to={`/situationalawareness`} />;
+    return <Redirect to="/situationalawareness" />;
   }
 }
