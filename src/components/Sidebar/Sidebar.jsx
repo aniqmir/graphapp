@@ -19,7 +19,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 // import Badge from "@material-ui/core/Badge";
 
-const drawerWidth = 270;
+const drawerWidth = 285;
 
 const useStyles = makeStyles(theme => ({
   root: {

@@ -21,9 +21,21 @@ function CustomRoutes() {
     } else if (type === "client") {
       return (
         <div>
-          <Route exact path="/situationalawareness" component={Client} />
+          <Route exact path="/courage" component={Client} />
           <Route exact path="/creativity" component={Client} />
-          <Route exact path="/teamwork" component={Client} />
+          <Route exact path="/compassion" component={Client} />
+          <Route exact path="/collaboration" component={Client} />
+          <Route exact path="/communications" component={Client} />
+          <Route exact path="/commitment" component={Client} />
+          <Route exact path="/credibility" component={Client} />
+          <Route exact path="/decisiveness" component={Client} />
+          <Route exact path="/emotionaleffectiveness" component={Client} />
+          <Route exact path="/situationalawareness" component={Client} />
+          <Route exact path="/teamleadership" component={Client} />
+          <Route exact path="/innovation" component={Client} />
+          <Route exact path="/networking" component={Client} />
+          <Route exact path="/yourtrueself" component={Client} />
+          <Route exact path="/winning" component={Client} />
         </div>
       );
     } else {

@@ -116,7 +116,7 @@ export default function Login(props) {
           localStorage.setItem("type", "client");
           localStorage.setItem("loggedIn", true);
           localStorage.setItem("username", type.username);
-          props.history.push(`/situationalawareness`);
+          props.history.push(`/courage`);
           window.location.reload();
           return null;
         } else {
@@ -259,6 +259,6 @@ export default function Login(props) {
       </form>
     );
   } else {
-    return <Redirect to={`/situationalawareness`} />;
+    return <Redirect to={`/courage`} />;
   }
 }
