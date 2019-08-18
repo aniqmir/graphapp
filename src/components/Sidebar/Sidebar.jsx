@@ -145,6 +145,16 @@ export default function MiniDrawer(props) {
     window.location.reload();
   }
 
+  function selectProject() {
+    props.history.push("/selectproject");
+  }
+
+  useEffect(() => {
+    return () => {
+      localStorage.setItem("selectedproject", "");
+    };
+  });
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -172,6 +182,7 @@ export default function MiniDrawer(props) {
             {props.path.charAt(0).toUpperCase() + props.path.slice(1)}
           </Typography>
           <div className={classes.logout} />
+          <Button onClick={() => selectProject()}>Select Project</Button>
           <Button onClick={() => logout()}>Logout</Button>
         </Toolbar>
       </AppBar>

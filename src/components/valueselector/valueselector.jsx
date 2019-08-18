@@ -70,16 +70,22 @@ export default function OutlinedTextFields(props) {
   const [values, setValues] = React.useState({
     p1: 1,
     a1: 1,
+    f1: 1,
     p2: 1,
     a2: 1,
+    f2: 1,
     p3: 1,
     a3: 1,
+    f3: 1,
     p4: 1,
     a4: 1,
+    f4: 1,
     p5: 1,
     a5: 1,
+    f5: 1,
     p6: 1,
-    a6: 1
+    a6: 1,
+    f6: 1
   });
 
   const handleChange = name => event => {
@@ -441,6 +447,170 @@ export default function OutlinedTextFields(props) {
                 className={classes.textField}
                 value={values.a6}
                 onChange={handleChange("a6")}
+                SelectProps={{
+                  native: true,
+                  MenuProps: {
+                    className: classes.menu
+                  }
+                }}
+                //helperText="Please select your value"
+                margin="normal"
+                variant="outlined"
+              >
+                {vals.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
+            </Grid>
+          </Grid>
+          <Grid
+            item
+            container
+            xs={2}
+            sm={2}
+            md={1}
+            // justify="center"
+            // alignContent="center"
+          >
+            <Grid item xs={12}>
+              <Typography variant="h5">Forecast</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="outlined-select-currency-native"
+                select
+                //label="native select"
+                className={classes.textField}
+                value={values.f1}
+                onChange={handleChange("f1")}
+                SelectProps={{
+                  native: true,
+                  MenuProps: {
+                    className: classes.menu
+                  }
+                }}
+                //helperText="Please select your value"
+                margin="normal"
+                variant="outlined"
+              >
+                {vals.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="outlined-select-currency-native"
+                select
+                //label="native select"
+                className={classes.textField}
+                value={values.f2}
+                onChange={handleChange("f2")}
+                SelectProps={{
+                  native: true,
+                  MenuProps: {
+                    className: classes.menu
+                  }
+                }}
+                //helperText="Please select your value"
+                margin="normal"
+                variant="outlined"
+              >
+                {vals.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="outlined-select-currency-native"
+                select
+                //label="native select"
+                className={classes.textField}
+                value={values.f3}
+                onChange={handleChange("f3")}
+                SelectProps={{
+                  native: true,
+                  MenuProps: {
+                    className: classes.menu
+                  }
+                }}
+                //helperText="Please select your value"
+                margin="normal"
+                variant="outlined"
+              >
+                {vals.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12}>
+              {" "}
+              <TextField
+                id="outlined-select-currency-native"
+                select
+                //label="native select"
+                className={classes.textField}
+                value={values.f4}
+                onChange={handleChange("f4")}
+                SelectProps={{
+                  native: true,
+                  MenuProps: {
+                    className: classes.menu
+                  }
+                }}
+                //helperText="Please select your value"
+                margin="normal"
+                variant="outlined"
+              >
+                {vals.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="outlined-select-currency-native"
+                select
+                //label="native select"
+                className={classes.textField}
+                value={values.f5}
+                onChange={handleChange("f5")}
+                SelectProps={{
+                  native: true,
+                  MenuProps: {
+                    className: classes.menu
+                  }
+                }}
+                //helperText="Please select your value"
+                margin="normal"
+                variant="outlined"
+              >
+                {vals.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="outlined-select-currency-native"
+                select
+                //label="native select"
+                className={classes.textField}
+                value={values.f6}
+                onChange={handleChange("f6")}
                 SelectProps={{
                   native: true,
                   MenuProps: {

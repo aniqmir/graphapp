@@ -72,6 +72,7 @@ export default function Login(props) {
     password: undefined
   });
   const [data, setData] = React.useState({});
+  const [keys, setKeys] = React.useState({});
   //   const [open, setOpen] = React.useState(false);
   //   const [notification, setNotification] = React.useState("");
 
@@ -94,7 +95,9 @@ export default function Login(props) {
       .get()
       .then(querySnapshot => {
         const dataArray = querySnapshot.docs.map(doc => doc.data());
+        const keysArray = querySnapshot.docs.map(doc => doc.id);
         setData(dataArray);
+        setKeys(keysArray);
       });
   }, [db]);
 
@@ -113,10 +116,15 @@ export default function Login(props) {
           return null;
         } else if (type.type === "client") {
           localStorage.clear();
+          localStorage.setItem("email", type.email);
+          localStorage.setItem("password", type.password);
           localStorage.setItem("type", "client");
           localStorage.setItem("loggedIn", true);
+          localStorage.setItem("keysArray", JSON.stringify(keys));
+          localStorage.setItem("key", key);
           localStorage.setItem("username", type.username);
-          props.history.push(`/courage`);
+          // localStorage.setItem("projects", JSON.stringify(type.projects));
+          props.history.push(`/selectproject`);
           window.location.reload();
           return null;
         } else {
@@ -259,6 +267,6 @@ export default function Login(props) {
       </form>
     );
   } else {
-    return <Redirect to={`/courage`} />;
+    return <Redirect to={`/selectproject`} />;
   }
 }

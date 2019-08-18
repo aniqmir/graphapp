@@ -8,7 +8,7 @@ import {
   Tooltip,
   Brush,
   ReferenceLine,
-  Line,
+  // Line,
   Legend
 } from "recharts";
 
@@ -17,38 +17,38 @@ export default function Areachart(props) {
     {
       name: "1st Period",
       plan: props.values.p1,
-      actual: props.values.a1
-      // amt: 2400
+      actual: props.values.a1,
+      forecast: props.values.f1
     },
     {
       name: "2nd Period",
       plan: props.values.p2,
-      actual: props.values.a2
-      // amt: 2210
+      actual: props.values.a2,
+      forecast: props.values.f2
     },
     {
       name: "3rd Period",
       plan: props.values.p3,
-      actual: props.values.a3
-      // amt: 2290
+      actual: props.values.a3,
+      forecast: props.values.f3
     },
     {
       name: "4th Period",
       plan: props.values.p4,
-      actual: props.values.a4
-      // amt: 2000
+      actual: props.values.a4,
+      forecast: props.values.f4
     },
     {
       name: "5th Period",
       plan: props.values.p5,
-      actual: props.values.a5
-      // amt: 2181
+      actual: props.values.a5,
+      forecast: props.values.f5
     },
     {
       name: "6th Period",
       plan: props.values.p6,
-      actual: props.values.a6
-      // amt: 2500
+      actual: props.values.a6,
+      forecast: props.values.f6
     }
   ];
 
@@ -88,7 +88,14 @@ export default function Areachart(props) {
         stroke="#525f7f"
         fill="#525f7f"
       />
-      <Line type="monotone" dataKey="actual" stroke="#ff7300" />
+      <Area
+        type="monotone"
+        dataKey="forecast"
+        stackId="1"
+        stroke="#ff8000"
+        fill="#ff8000"
+      />
+      {/* <Line type="monotone" dataKey="actual" stroke="#ff7300" /> */}
       <ReferenceLine y={1} stroke="red" label="Novice" />
       <ReferenceLine y={2} stroke="grey" label="Competent" />
       <ReferenceLine y={3} stroke="yellow" label="Proficient" />

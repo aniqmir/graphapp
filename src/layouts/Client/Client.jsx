@@ -76,7 +76,7 @@ export default function Dashboard(props) {
 
   const pathname = props.location.pathname.split("/");
   const viewname = pathname[1];
-  const username = localStorage.getItem("username");
+  const selectedproject = localStorage.getItem("selectedproject");
 
   const view = {
     courage: <CourageView token={token} />,
@@ -98,7 +98,7 @@ export default function Dashboard(props) {
 
   if (!loggedIn || token.length === 0) {
     return <Redirect to="/" />;
-  } else if (loggedIn && token.length !== 0) {
+  } else if (loggedIn && token.length !== 0 && selectedproject !== null) {
     return (
       <Sidebar
         history={props.history}
@@ -106,8 +106,14 @@ export default function Dashboard(props) {
         icon={icons}
         path={pathname[1]}
         view={view[viewname]}
-        username={username}
+        username={selectedproject}
       />
     );
+  } else if (
+    selectedproject === null ||
+    selectedproject.length === 0 ||
+    selectedproject === undefined
+  ) {
+    return <Redirect to="/selectproject" />;
   }
 }

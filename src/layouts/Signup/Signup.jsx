@@ -73,6 +73,7 @@ export default function Signup(props) {
     confirmpassword: undefined,
     username: undefined,
     type: "client",
+    projects: [],
     tests: [{ situationalawareness: 1 }, { creativity: 1 }, { teamwork: 1 }]
   });
 

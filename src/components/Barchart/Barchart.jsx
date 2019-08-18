@@ -18,38 +18,38 @@ export default function Chart(props) {
     {
       name: "1st Period",
       plan: props.values.p1,
-      actual: props.values.a1
-      // amt: 2400
+      actual: props.values.a1,
+      forecast: props.values.f1
     },
     {
       name: "2nd Period",
       plan: props.values.p2,
-      actual: props.values.a2
-      // amt: 2210
+      actual: props.values.a2,
+      forecast: props.values.f2
     },
     {
       name: "3rd Period",
       plan: props.values.p3,
-      actual: props.values.a3
-      // amt: 2290
+      actual: props.values.a3,
+      forecast: props.values.f3
     },
     {
       name: "4th Period",
       plan: props.values.p4,
-      actual: props.values.a4
-      // amt: 2000
+      actual: props.values.a4,
+      forecast: props.values.f4
     },
     {
       name: "5th Period",
       plan: props.values.p5,
-      actual: props.values.a5
-      // amt: 2181
+      actual: props.values.a5,
+      forecast: props.values.f5
     },
     {
       name: "6th Period",
       plan: props.values.p6,
-      actual: props.values.a6
-      // amt: 2500
+      actual: props.values.a6,
+      forecast: props.values.f6
     }
   ];
   return (
@@ -81,6 +81,7 @@ export default function Chart(props) {
       <Brush dataKey="name" height={30} stroke="#8884d8" />
       <Bar dataKey="plan" fill="#2dce89" />
       <Bar dataKey="actual" fill="#525f7f" />
+      <Bar dataKey="forecast" fill="#ff8000" />
     </BarChart>
   );
 }

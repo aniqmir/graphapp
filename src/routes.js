@@ -5,6 +5,7 @@ import Login from "./layouts/Login/Login.jsx";
 import Admin from "./layouts/Admin/Admin.jsx";
 import Client from "./layouts/Client/Client.jsx";
 import SignUp from "./layouts/Signup/Signup.jsx";
+import FirstScreen from "./layouts/Client/FirstScreen/FirstScreen.jsx";
 
 const customHistory = createBrowserHistory();
 
@@ -21,6 +22,7 @@ function CustomRoutes() {
     } else if (type === "client") {
       return (
         <div>
+          <Route exact path="/selectproject" component={FirstScreen} />
           <Route exact path="/courage" component={Client} />
           <Route exact path="/creativity" component={Client} />
           <Route exact path="/compassion" component={Client} />
